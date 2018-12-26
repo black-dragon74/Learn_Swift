@@ -38,6 +38,11 @@ extension Int {
             self -= 1
         }
     }
+    
+    // Checks if integer being iterated upon is even or not, returns 'Bool' as it will mostly be used in IF ELSE conditionals
+    func isEven() -> Bool {
+        return self % 2 == 0
+    }
 }
 // End custom extension
 
@@ -200,3 +205,84 @@ var m = sum(2, 2) // Args as 'Int' and 'Int'
 // Uncomment the line below and take a note at the error
 //var ss = sum (1, "Dafaq")
 // Will print error that a 'Numeric' type is expected and 'String' is passed instead. Love 'Swift' yet?
+
+// START ARRAY RELATED STUFFS
+// Now we will see how to print elements of an array one by one
+let myItems = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"]
+
+for item in myItems { print(item) } // Done! In single line, no need of any loops, array size.
+
+// Let's create a numeric array
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+// This wil contain the sum of numeric array
+var numSum = 0
+
+// Let's calculate the sum
+for number in numbers { numSum += number } // Easy, right? In C: for (i = 0; i < sizeof(array) / sizeof(array[0]); i++) { sum += 1; }
+
+// Print the sum
+print(numSum)
+
+// We will see how to find the largest element in an array by two methods
+// Method one, more like C language
+func arrayLargestMethodOne(array: [Int]) -> Int {
+    var largest = 0
+    for i in 0...array.count-1 {
+        if (array[i] > largest) {
+            largest = array [i]
+        }
+    }
+    return largest
+}
+
+// Method two more 'Swift'-ish/er :D
+func arrayLargestMethodTwo(array: [Int]) -> Int {
+    var largest = array[0]
+    for item in array {
+        if item > largest { largest = item }
+    }
+    return largest
+}
+
+// Both will have the same value
+let large1 = arrayLargestMethodOne(array: myArray)
+let large2 = arrayLargestMethodTwo(array: myArray)
+
+
+// Likewise, smallest element in an array using Swift like approach
+func smallestInArray(array: [Int]) -> Int {
+    var smallest = array[0]
+    for arr in array { if arr < smallest { smallest = arr } }
+    return smallest
+}
+
+let smArray = smallestInArray(array: myArray)
+
+func sumOddTermsArray(array: [Int]) -> Int {
+    var idx = 0
+    var sum = 0
+    for item in array {
+        if (!idx.isEven()) { // Is even is our custom extension to integer data type
+            sum += item
+        }
+        idx.inc() // '.inc()' also is my custom extension
+    }
+    return sum
+}
+
+// Above function in C style would be extremely complicated like: (denoted just for comparison)
+//int sumOddTermsArray (int *array) {
+//    int idx = 0;
+//    int sum = 0;
+//    for (int i = 0; i < sizeof(array) / sizeof (array[0]); i++) {
+//        if (idx % 2 != 0) {
+//            sum += array[idx];
+//        }
+//        idx++;
+//    }
+//    return sum;
+//}
+
+let oddSum = sumOddTermsArray(array: myArray)
+// END ARRAY RELATED STUFF
