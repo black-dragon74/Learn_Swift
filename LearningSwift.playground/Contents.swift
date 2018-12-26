@@ -143,3 +143,20 @@ func primeInRange (start: Int, end: Int) {
 // Call and print the prime numbers
 primeInRange(start: 2, end: 60) // Will print all prime numbers starting from 2 upto 60
 
+// Function to reverse a number
+// Note that I have not specified variable type for 'iterate', 'remainder' and 'reversed' variables
+// Swift is smart enough to know the data type of the variable (I had stated this earlier, repeating it here to make you recall)
+// However, you must initialize variable with a value when you are not defining the data type of the variable.
+func reverseNumber (_ numToReverse: Int) -> Int { // If you recall, I have used '_' before the argument name so that you don't have to add the label when calling the function
+    var iterate = numToReverse // Can also be declared as: var iterate: Int = numToReverse
+    var remainder = 0 // Can also be decalred as: var remainder: Int = 0
+    var reversed = 0 // Can also be declared as: var reversed: Int = 0
+    while iterate != 0 {
+        remainder = iterate % 10
+        reversed = reversed * 10 + remainder
+        iterate /= 10
+    }
+    return reversed
+}
+
+let test = reverseNumber(1234) // As I have used '_' at line #150; I called function like aforehand stead of: reverseNumber(numToReverse: 1234)
