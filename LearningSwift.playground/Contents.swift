@@ -160,3 +160,10 @@ func reverseNumber (_ numToReverse: Int) -> Int { // If you recall, I have used 
 }
 
 let test = reverseNumber(1234) // As I have used '_' at line #150; I called function like aforehand stead of: reverseNumber(numToReverse: 1234)
+
+// Function to check if a number is a palindrome, calls our custom 'reverseNumber' function
+func isPalindrome (_ number: Int) -> Bool {
+    return number == reverseNumber(number) // Confusing? Well try to understand it yourself
+}
+
+isPalindrome(111) ? print("Number is a palindrome") : print("Number is not a palindrome")
