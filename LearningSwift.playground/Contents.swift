@@ -92,6 +92,8 @@ if (binSearch.elemFound){
 }
 
 /// Function to print prime numbers in a range
+// Take a note that we do not need to specify void return type if the function doesn't return anything
+// To define void return type we would write as: func primeInRange (start: Int, end: Int) -> Void { ... }
 func primeInRange (start: Int, end: Int) {
     for i in start...end {
         var composite: Int = 0
