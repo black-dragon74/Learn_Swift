@@ -167,3 +167,36 @@ func isPalindrome (_ number: Int) -> Bool {
 }
 
 isPalindrome(111) ? print("Number is a palindrome") : print("Number is not a palindrome")
+
+// Now let's have a look at the generic functions but first, what are generics?
+// Suppose we want to add two numbers of type 'Int' using a function,
+// You might know that a function can take parameters of a definite type only, like:
+// func sum (a: Int, b: Int) -> Int { ... }
+// You can still pass it the 'Double' values but it will truncate them like: 2.55 will just be read as 2
+// What if you wanted to add 2 + 5.5? You would say you will write a function like: func sum(a: Int, b: Double) -> Double { ... }
+// But then again, it requires one 'Int' and one 'Double'. Suppose you wanna add 2.3 + 5.5, what now? You can't be writing new functions everytime, right?
+// What if we could have a universal function that can accept any data type (as long as it's a arithmetic literal) and return us the sum?
+// If you know a little bit of 'Swift' you might know there is a data type called 'Any' which literally accepts any data type
+// So, you could write a function like: func sum (a: Any, b: Any) -> Any { ... } but then what if someone passes the value 'a' as a 'String' literal
+// Our program will then crash, which is obvioulsy you, as a good developer would want to circumvent.
+// Some of (geniuses) you would say we could implement the 'Numeric' 'protocol' on 'Any' data type but we can't do that as 'Any' is not a valid identifier
+// So what now? Enough blabbering let's jump straight to the implementation
+
+/**
+ *  Function description:
+ *  Function Sum, of generic type 'T' conforming to the 'Numeric' protocol (so that we only accept arithmetic literals)
+ *  Accepts two args: 'a' and 'b' of type 'T' (generic) and return the generic type 'T'
+ *  I won't explain why I have used a '_' before 'a' and 'b' as I have done that in the lines above more than once
+ **/
+func sum<T: Numeric> (_ a: T, _ b: T) -> T {
+    return a + b
+}
+
+// Implementation: All vars use the same function 'sum' declared at line #190
+var s = sum(1, 2.5) // Args as 'Int' and 'Double'
+var u = sum(1.5, 2.5) // Args as 'Double' and 'Double'
+var m = sum(2, 2) // Args as 'Int' and 'Int'
+
+// Uncomment the line below and take a note at the error
+//var ss = sum (1, "Dafaq")
+// Will print error that a 'Numeric' type is expected and 'String' is passed instead. Love 'Swift' yet?
