@@ -16,3 +16,5 @@ app/src/test/
 app/src/androidTest
 app/lint.xml
 app/proguard-project.txt
+*.xcplayground
+*.xcworkspace
