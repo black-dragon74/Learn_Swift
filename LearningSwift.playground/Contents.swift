@@ -41,6 +41,11 @@ if (search.elemFound) {
 }
 
 // Function to perform a Binary search on an array
+/*
+ *  Function description:
+ *  Function named linearSearch, takes parameters: 'num2Search' of type 'Int' and 'array' of type '[Int]' (Integer Array)
+ *  It returns named variables: 'elementFound' of type 'Bool' and 'foundAtIndex' of type 'Int'
+ */
 func binarySearch(num2Search: Int, array: [Int]) -> (elemFound: Bool, foundAtIndex: Int) {
     let arraySize = array.count - 1
     var elemFound = 0
