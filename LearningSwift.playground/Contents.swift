@@ -12,6 +12,35 @@ let myArray: [Int] = [10, 9, 8, 7, 6, 5, 4, 3, 2]
 // Above can be also declared like:
 // let myArray = [10, 9, 8, 7, 6, 5, 4, 3, 2]
 
+// Start custom extension
+// Do not pay attention to the extension part, you may still read comments to understand the code if you are of the curious kind ;)
+// As swift doesn't support unary increment (i++) and unary decrement (i--), I decided to write an extension block for it
+// Take a note of how flexible Swift is.
+extension Int {
+    // Mutating function means it will update the value of Integer
+    // _ before 'by' means you need not provide i.inc(by: value), you can just call i.inc(value), much like C functions
+    // '?' after 'Int' means it is optional and we have assigned it the default value 'nil' which is equivalent to NULL
+    mutating func inc(_ by: Int? = nil) {
+        if let times = by { // If optional value 'by' has some value set (other than nil, of course),
+            self += times // Add that to the 'retVal' which holds 'self' (The current number)
+        }
+        else {
+            self += 1 // If 'inc' is called without a parameter, just increment by one
+        }
+    }
+    
+    // Opposite of Increment, functionality is exactly reversed, comments above will apply to this too
+    mutating func dec(_ by: Int? = nil) {
+        if let times = by {
+            self -= times
+        }
+        else {
+            self -= 1
+        }
+    }
+}
+// End custom extension
+
 // Function to search an item in the array, we'll also see how powerful Swift is, allowing us to return multiple values at the same time
 /*
  *  Function description:
@@ -25,7 +54,7 @@ func linearSearch (num2Search: Int, array: [Int]) -> (elemFound: Bool, foundAtIn
     print("Starting linear search on sorted array of size: \(arraySize)")
     for i in 0...arraySize  {   // Same as for (i = 0; i <= (sizeof(array) / sizeof(array[0])); i++) in C; Triple dots means, including 0 and arraySize
         if array[i] == num2Search {
-            elemFound += 1
+            elemFound.inc() // We have called our extension here
             elemIndex = i
             break
         }
@@ -99,7 +128,7 @@ func primeInRange (start: Int, end: Int) {
         var composite: Int = 0
         for j in 1...i {
             if (i % j == 0){
-                composite += 1
+                composite.inc() // Coz Swift hates C style Increment, we have called our own implementation of the same
             }
         }
         
@@ -113,3 +142,4 @@ func primeInRange (start: Int, end: Int) {
 
 // Call and print the prime numbers
 primeInRange(start: 2, end: 60) // Will print all prime numbers starting from 2 upto 60
+
