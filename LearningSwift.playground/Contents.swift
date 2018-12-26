@@ -90,3 +90,24 @@ let binSearch = binarySearch(num2Search: 10, array: myArray)
 if (binSearch.elemFound){
     print("Elemnent found in the sorted array with index: \(binSearch.foundAtIndex)")
 }
+
+/// Function to print prime numbers in a range
+func primeInRange (start: Int, end: Int) {
+    for i in start...end {
+        var composite: Int = 0
+        for j in 1...i {
+            if (i % j == 0){
+                composite += 1
+            }
+        }
+        
+        if composite == 2 {
+            // Number is a prime number
+            print("Prime: \(i)")
+        }
+    }
+}
+
+
+// Call and print the prime numbers
+primeInRange(start: 2, end: 60) // Will print all prime numbers starting from 2 upto 60
